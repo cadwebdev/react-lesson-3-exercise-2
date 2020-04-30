@@ -99,21 +99,6 @@ const objMovies = {
 }
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.objUsersByMovie = {}
-
-  //   arrProfiles.forEach((objProfile) => {
-  //     const movieID = objProfile.favoriteMovieID
-
-  //     if (this.objUsersByMovie[movieID]) {
-  //       this.objUsersByMovie[movieID].push(objProfile.userID)
-  //     } else {
-  //       this.objUsersByMovie[movieID] = [objProfile.userID]
-  //     }
-  //   })
-  // }
-
   render() {
     const objUsersByMovie = {}
 
