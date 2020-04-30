@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import DashboardMovies from './DashboardMovies'
 
 /*
 Display a list of movies where each movie contains a list of users that favorited it.
@@ -8,7 +9,7 @@ Display a list of movies where each movie contains a list of users that favorite
 For detailed instructions, refer to instructions.md.
 */
 
-const profiles = [
+const arrProfiles = [
   {
     id: 1,
     userID: '1',
@@ -39,9 +40,9 @@ const profiles = [
     userID: '6',
     favoriteMovieID: '4',
   },
-];
+]
 
-const users = {
+const objUsers = {
   1: {
     id: 1,
     name: 'Jane Jones',
@@ -72,9 +73,9 @@ const users = {
     name: 'Nicholas Lain',
     userName: 'user123',
   },
-};
+}
 
-const movies = {
+const objMovies = {
   1: {
     id: 1,
     name: 'Planet Earth',
@@ -95,29 +96,47 @@ const movies = {
     id: 5,
     name: 'Get Out',
   },
-};
+}
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.objUsersByMovie = {}
+
+  //   arrProfiles.forEach((objProfile) => {
+  //     const movieID = objProfile.favoriteMovieID
+
+  //     if (this.objUsersByMovie[movieID]) {
+  //       this.objUsersByMovie[movieID].push(objProfile.userID)
+  //     } else {
+  //       this.objUsersByMovie[movieID] = [objProfile.userID]
+  //     }
+  //   })
+  // }
+
   render() {
+    const objUsersByMovie = {}
+
+    arrProfiles.forEach((objProfile) => {
+      const movieID = objProfile.favoriteMovieID
+
+      if (objUsersByMovie[movieID]) {
+        objUsersByMovie[movieID].push(objProfile.userID)
+      } else {
+        objUsersByMovie[movieID] = [objProfile.userID]
+      }
+    })
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">ReactND - Coding Practice</h1>
-        </header>
-        <h2>How Popular is Your Favorite Movie?</h2>
-{movies.map(movie => {
-	const movieName = movie.name
-	const movieLikedBy = profiles.filter(profile => (profile.favoriteMovieID == movie.id))
-	<h2>movieName</h2>
-<p>Liked by:</p>
-
-	
-
-})}
+        <DashboardMovies
+          objUsersByMovie={objUsersByMovie}
+          objUsers={objUsers}
+          objMovies={objMovies}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
